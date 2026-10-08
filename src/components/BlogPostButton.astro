@@ -1,0 +1,29 @@
+---
+interface Props {
+    slug: string;
+    title: string;
+    description?: string;
+    date: string;
+}
+
+const { slug, title, description, date } = Astro.props;
+---
+
+<a
+    href={`/blog/${slug}`}
+    class='flex gap-3 mb-4 justify-between items-start text-justify py-4 first:pt-0 border-b border-b-purple-300 group'
+>
+    <div>
+        <time class='text-text/30 text-[10px] font-mono' datetime={date}>
+            {date}
+        </time>
+        <h2 class='font-bricolage-grotesque font-bold text-2xl group-hover:underline group-hover:text-peach'>
+            {title}
+        </h2>
+        {description && (
+            <p class='text-text/50 font-cossette-texte text-sm'>
+                {description}
+            </p>
+        )}
+    </div>
+</a>

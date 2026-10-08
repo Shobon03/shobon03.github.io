@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import AsideNavigation from '../components/AsideNavigation.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const {
+    title = 'matheus teixeira',
+    description = "matheus teixeira's webpage. a little piece on the internet about software enginnering, computer science and my worldview as a whole.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang='en' class='scroll-smooth'>
+    <head>
+        <!-- Basic -->
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='description' content={description} />
+        <meta name='author' content='Matheus Teixeira' />
+        <meta
+            name='keywords'
+            content='Matheus Teixeira, Full-Stack, Computer Science, Software Engineer, Developer, Development, Desenvolvedor, TypeScript, Rust'
+        />
+
+        <!-- Open Graph -->
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://seusite.com.br/' />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta property='og:image' content='/og-image.jpg' />
+        <meta
+            property='og:image:alt'
+            content="matheus teixeira's website image. It says: 'matheus teixeira', 'my little piece on the internet: software engineering, computer science and all my ramblings' ending with a emoticon of a smily face."
+        />
+
+        <!-- Twitter (X) Cards -->
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:url' content='https://seusite.com.br/' />
+        <meta name='twitter:title' content={title} />
+        <meta name='twitter:description' content={description} />
+        <meta name='twitter:image' content='/og-image.jpg' />
+
+        <!-- Theme -->
+        <meta name='theme-color' content='#11111b' />
+        <meta name='color-scheme' content='dark' />
+
+        <!-- Links and Assets -->
+        <link rel='icon' type='image/png' href='/favicon.png' />
+        <link
+            rel='preload'
+            href='/fonts/CossetteTexte-Regular.woff2'
+            as='font'
+            type='font/woff2'
+            crossorigin='anonymous'
+        />
+        <link
+            rel='preload'
+            href='/fonts/BricolageGrotesque.woff2'
+            as='font'
+            type='font/woff2'
+            crossorigin='anonymous'
+        />
+        <link
+            rel='preload'
+            href='/fonts/Recursive.woff2'
+            as='font'
+            type='font/woff2'
+            crossorigin='anonymous'
+        />
+
+        <!-- Title -->
+        <title>{title}</title>
+    </head>
+    <body class='bg-crust text-text selection:bg-mauve selection:text-crust'>
+        <div class='flex flex-col mx-auto w-full max-w-125 px-5 mb-40 mt-8 md:mt-20 lg:mt-32'>
+            <AsideNavigation />
+
+            <main class='flex-auto min-w-0 flex flex-col max-w-125'>
+                <slot />
+            </main>
+        </div>
+    </body>
+</html>

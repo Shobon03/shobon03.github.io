@@ -1,0 +1,12 @@
+---
+interface Props {
+    icon: string;
+    class?: string;
+}
+
+const { icon, class: className } = Astro.props;
+---
+
+<span class:list={['material-symbols-sharp select-none', className]}>
+    {icon}
+</span>

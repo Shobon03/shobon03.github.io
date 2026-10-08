@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@import '@fontsource-variable/material-symbols-sharp';
+
+@font-face {
+    font-family: 'Cossette Texte';
+    src: url('/fonts/CossetteTexte-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cossette Texte';
+    src: url('/fonts/CossetteTexte-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('/fonts/BricolageGrotesque.woff2') format('woff2');
+    font-weight: 200 800;
+    font-stretch: 75% 100%;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Recursive Mono';
+    src: url('/fonts/Recursive.woff2') format('woff2');
+    font-weight: 300 1000;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --font-cossette-texte: 'Cossette Texte', sans-serif;
+    --font-bricolage-grotesque: 'Bricolage Grotesque', sans-serif;
+    --font-mono: 'Recursive Mono', monospace;
+
+    --color-rosewater: #f5e0dc;
+    --color-flamingo: #f2cdcd;
+    --color-pink: #f5c2e7;
+    --color-mauve: #cba6f7;
+    --color-red: #f38ba8;
+    --color-maroon: #eba0ac;
+    --color-peach: #fab387;
+    --color-yellow: #f9e2af;
+    --color-green: #a6e3a1;
+    --color-teal: #94e2d5;
+    --color-sky: #89dceb;
+    --color-sapphire: #74c7ec;
+    --color-blue: #89b4fa;
+    --color-lavender: #b4befe;
+    --color-text: #cdd6f4;
+    --color-subtext-1: #bac2de;
+    --color-subtext-0: #a6adc8;
+    --color-overlay-2: #9399b2;
+    --color-overlay-1: #7f849c;
+    --color-overlay-0: #6c7086;
+    --color-surface-2: #585b70;
+    --color-surface-1: #45475a;
+    --color-surface-0: #313244;
+    --color-base: #1e1e2e;
+    --color-mantle: #181825;
+    --color-crust: #11111b;
+}
+
+@layer components {
+    a:hover {
+        color: var(--color-mauve);
+    }
+
+    .prose :is(h1, h2, h3, h4, h5, h6) a {
+        text-decoration: none !important;
+        color: var(--color-text) !important;
+        font-weight: inherit;
+    }
+
+    .prose :is(h1, h2, h3, h4, h5, h6):target a,
+    .prose :is(h1, h2, h3, h4, h5, h6) a:hover {
+        color: var(--color-mauve) !important;
+        text-decoration: underline !important;
+    }
+
+    @media (min-width: 768px) {
+        .prose :is(h1, h2, h3, h4, h5, h6):target a::before,
+        .prose :is(h1, h2, h3, h4, h5, h6) a:hover::before {
+            content: '#';
+            position: absolute;
+            margin-left: -0.75em;
+            color: var(--color-mauve);
+        }
+    }
+}
+
+body {
+    font-family: var(--font-cossette-texte);
+}
+
+.material-symbols-sharp {
+    font-family: 'Material Symbols Sharp Variable';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    display: inline-block;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    user-select: none;
+    font-feature-settings: 'liga';
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono,
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--font-mono);
+    font-variation-settings: 'MONO' 1;
+}

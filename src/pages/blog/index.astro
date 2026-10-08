@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPostButton from '../../components/BlogPostButton.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => {
+    const dateA = a.data.date || '';
+    const dateB = b.data.date || '';
+    return dateB.localeCompare(dateA);
+});
+---
+
+<Layout
+    title='blog | matheus teixeira'
+    description="my blog post listing. here you'll find all my ramblings and opinions."
+>
+    <section class='max-w-125'>
+        {posts.map((post) => (
+            <BlogPostButton
+                slug={post.id.replace(/\.(md|mdx)$/, '')}
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+            />
+        ))}
+    </section>
+</Layout>

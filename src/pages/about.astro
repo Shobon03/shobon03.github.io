@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const ageYears = new Date().getFullYear() - 2003;
+---
+
+<Layout
+    title='about | matheus teixeira'
+    description='a little about me, how i got here and what my tastes are.'
+>
+    <section class='space-y-2 max-w-125 text-justify'>
+        <p>so...</p>
+        <p>
+            i'm a {ageYears} years old brazilian systems programmer. i'm a
+            bachelor in computer science, i love solving problems and i care
+            about code optimizations on projects i that work on.
+        </p>
+        <p>
+            i'm a passionate gamer, and i love smw hacking — so much so that i'm
+            learning smw assembly and tinkering with it.
+        </p>
+        <p>
+            i'm a linux advocate since 2019 and never looked back. my current os
+            is fedora. i have some love for macs as well, and so much nostalgia
+            from windows xp and windows 7.
+        </p>
+        <p>
+            and the languages i like for programming are many... but mostly rust
+            and golang.
+        </p>
+        <p>
+            my site uses catppuccin's{' '}
+            <a href='https://catppuccin.com/palette/#flavor-mocha'>
+                mocha theme
+            </a>
+            .
+        </p>
+    </section>
+</Layout>

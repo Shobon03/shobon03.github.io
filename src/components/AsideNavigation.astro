@@ -1,0 +1,35 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+    { to: '/', label: 'home' },
+    { to: '/about', label: 'about' },
+    { to: '/projects', label: 'projects' },
+    { to: '/blog', label: 'blog' },
+];
+---
+
+<aside class='md:w-50 mb-10'>
+    <a
+        href='/'
+        class='font-bricolage-grotesque font-bold text-crust bg-mauve px-2'
+    >
+        matheus teixeira
+    </a>
+
+    <nav class='flex gap-5'>
+        {navItems.map((item) => {
+            const isActive =
+                item.to === '/'
+                    ? pathname === '/'
+                    : pathname === item.to ||
+                      pathname.startsWith(item.to + '/');
+
+            return (
+                <a href={item.to} class:list={[isActive && 'text-mauve']}>
+                    {item.label}
+                </a>
+            );
+        })}
+    </nav>
+</aside>

@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const projects = [
+    {
+        year: 2026,
+        items: [
+            {
+                name: 'carteirinha',
+                description:
+                    'an asset wallet. this project contains a backend and a frontend integrated in rust. it uses hexagonal architecture, tokio, axum, tracing and observability. i made custom models and set rules and implementations of each module. made as a final project for a bootcamp.',
+                lang: 'rust',
+                link: 'https://github.com/Shobon03/carteirinha',
+            },
+            {
+                name: 'telegram json parser',
+                description:
+                    'simple script that extracts links from an exported json file of a telegram chat.',
+                lang: 'golang',
+                link: 'https://github.com/Shobon03/telegram-json-parser',
+            },
+            {
+                name: 'ledger',
+                description:
+                    'financial ledger written in rust as my first project using hexagonal architecture. it uses rocksdb as a file database with quick data access.',
+                lang: 'rust',
+                link: 'https://github.com/Shobon03/rust-ledger',
+            },
+            {
+                name: 'rinha de backend',
+                description:
+                    'cpu and memory-light transaction fraud detection api. it uses a json that has 3 million base transactions and analyses that tells if they are legit or fraud. the api does a vector search in these lines and checks for closeness.',
+                lang: 'golang',
+                link: 'https://github.com/Shobon03/rinha-de-backend-2026-go',
+            },
+            {
+                name: 'downloads manager',
+                description:
+                    "simple downloads manager for android. made with google's new material 3 expressive design apis.",
+                lang: 'kotlin jetpack-compose material-3',
+                link: 'https://github.com/Shobon03/downloads-manager',
+            },
+        ],
+    },
+    {
+        year: 2025,
+        items: [
+            {
+                name: 'smw snes reader',
+                description:
+                    'simple smw rom header parser, written in gleam for me to get the language basics.',
+                lang: 'gleam',
+                link: 'https://github.com/Shobon03/snes-reader',
+            },
+            {
+                name: 'secrets manager',
+                description:
+                    'a password storage project written using the tauri framework. unfinished but the core functionalities are done.',
+                lang: 'rust  typescript',
+                link: 'https://github.com/Shobon03/secrets-manager',
+            },
+        ],
+    },
+];
+---
+
+<Layout
+    title='projects | matheus teixeira'
+    description='a (not comprehensive) list of my personal and public projects.'
+>
+    <section>
+        <div class='-space-y-0.5 mb-5 text-justify'>
+            <p>some of my projects</p>
+            <p class='text-[10px] text-text/30'>click to open description</p>
+            {projects.map((project) => (
+                <div class='space-y-1 mt-4'>
+                    <p class='font-bold'>{project.year}</p>
+                    <ul class='ml-4 [&>li]:marker:text-mauve'>
+                        {project.items.map((item) => (
+                            <li class='project-item transition-colors hover:list-disc hover:text-mauve text-text'>
+                                <button
+                                    type='button'
+                                    class='project-toggle cursor-pointer text-left w-fit h-7 flex items-center gap-1.5 focus:outline-none'
+                                >
+                                    <span class='project-title hover:underline'>
+                                        {item.name}
+                                    </span>
+                                </button>
+
+                                <div class='project-content grid grid-rows-[0fr] transition-[grid-template-rows,opacity] duration-200 ease-in-out opacity-0 overflow-hidden'>
+                                    <div class='min-h-0'>
+                                        <div class='my-2 ml-1 pl-3 border-l-2 border-surface-1 space-y-2 text-sm text-text'>
+                                            <p class='text-subtext-0 text-justify leading-relaxed'>
+                                                {item.description}
+                                            </p>
+                                            <div class='flex flex-wrap items-center gap-3 text-xs font-mono pt-1'>
+                                                <span class='text-overlay-1'>
+                                                    <span class='text-mauve font-semibold'>
+                                                        {item.lang}
+                                                    </span>
+                                                </span>
+                                                <span class='text-surface-2'>
+                                                    •
+                                                </span>
+                                                <a
+                                                    href={item.link}
+                                                    target={
+                                                        item.link.startsWith(
+                                                            'http',
+                                                        )
+                                                            ? '_blank'
+                                                            : undefined
+                                                    }
+                                                    rel='noopener noreferrer'
+                                                    class='inline-flex items-center gap-1 text-mauve group'
+                                                >
+                                                    <span class='group-hover:underline'>
+                                                        source
+                                                    </span>
+                                                    <Icon
+                                                        icon='open_in_new'
+                                                        class='text-[13px]!'
+                                                    />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </section>
+</Layout>
+
+<script>
+    function setupProjectAccordions() {
+        const items = document.querySelectorAll('.project-item');
+
+        items.forEach((item) => {
+            const btn = item.querySelector('.project-toggle');
+            const title = item.querySelector('.project-title');
+            const content = item.querySelector('.project-content');
+
+            btn?.addEventListener('click', () => {
+                const isOpen = item.classList.contains('is-open');
+
+                items.forEach((other) => {
+                    if (other !== item) {
+                        other.classList.remove(
+                            'is-open',
+                            'list-disc',
+                            'text-mauve',
+                        );
+                        other.classList.add(
+                            'hover:list-disc',
+                            'hover:text-mauve',
+                            'text-text',
+                        );
+                        other
+                            .querySelector('.project-title')
+                            ?.classList.remove('font-bold');
+                        other
+                            .querySelector('.project-title')
+                            ?.classList.add('hover:underline');
+                        const c = other.querySelector('.project-content');
+                        c?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                        c?.classList.add('grid-rows-[0fr]', 'opacity-0');
+                    }
+                });
+
+                if (isOpen) {
+                    item.classList.remove('is-open', 'list-disc', 'text-mauve');
+                    item.classList.add(
+                        'hover:list-disc',
+                        'hover:text-mauve',
+                        'text-text',
+                    );
+                    title?.classList.remove('font-bold');
+                    title?.classList.add('hover:underline');
+                    content?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+                    content?.classList.add('grid-rows-[0fr]', 'opacity-0');
+                } else {
+                    item.classList.add('is-open', 'list-disc', 'text-mauve');
+                    item.classList.remove(
+                        'hover:list-disc',
+                        'hover:text-mauve',
+                        'text-text',
+                    );
+                    title?.classList.add('font-bold');
+                    title?.classList.remove('hover:underline');
+                    content?.classList.add('grid-rows-[1fr]', 'opacity-100');
+                    content?.classList.remove('grid-rows-[0fr]', 'opacity-0');
+                }
+            });
+        });
+    }
+
+    setupProjectAccordions();
+    document.addEventListener('astro:page-load', setupProjectAccordions);
+</script>
