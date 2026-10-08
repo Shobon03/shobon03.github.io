@@ -2,44 +2,15 @@
 @plugin '@tailwindcss/typography';
 
 @import '@fontsource-variable/material-symbols-sharp';
-
-@font-face {
-    font-family: 'Cossette Texte';
-    src: url('/fonts/CossetteTexte-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Cossette Texte';
-    src: url('/fonts/CossetteTexte-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bricolage Grotesque';
-    src: url('/fonts/BricolageGrotesque.woff2') format('woff2');
-    font-weight: 200 800;
-    font-stretch: 75% 100%;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Recursive Mono';
-    src: url('/fonts/Recursive.woff2') format('woff2');
-    font-weight: 300 1000;
-    font-style: normal;
-    font-display: swap;
-}
+@import '@fontsource/cossette-texte/400.css';
+@import '@fontsource/cossette-texte/700.css';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/recursive';
 
 @theme {
     --font-cossette-texte: 'Cossette Texte', sans-serif;
-    --font-bricolage-grotesque: 'Bricolage Grotesque', sans-serif;
-    --font-mono: 'Recursive Mono', monospace;
+    --font-bricolage-grotesque: 'Bricolage Grotesque Variable', sans-serif;
+    --font-mono: 'Recursive Variable', monospace;
 
     --color-rosewater: #f5e0dc;
     --color-flamingo: #f2cdcd;

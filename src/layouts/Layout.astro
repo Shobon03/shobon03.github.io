@@ -5,11 +5,13 @@ import AsideNavigation from '../components/AsideNavigation.astro';
 interface Props {
     title?: string;
     description?: string;
+    link?: string;
 }
 
 const {
     title = 'matheus teixeira',
     description = "matheus teixeira's webpage. a little piece on the internet about software enginnering, computer science and my worldview as a whole.",
+    link = 'https://shobon03.github.io',
 } = Astro.props;
 ---
 
@@ -28,10 +30,10 @@ const {
 
         <!-- Open Graph -->
         <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://shobon03.github.io' />
+        <meta property='og:url' content={link} />
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
-        <meta property='og:image' content='/og-image.png' />
+        <meta property='og:image' content={`${link}/og-image.png`} />
         <meta
             property='og:image:alt'
             content="matheus teixeira's website image. It says: 'matheus teixeira', 'my little piece on the internet: software engineering, computer science and all my ramblings' ending with a emoticon of a smily face."
@@ -39,38 +41,17 @@ const {
 
         <!-- Twitter (X) Cards -->
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:url' content='https://shobon03.github.io' />
+        <meta name='twitter:url' content={link} />
         <meta name='twitter:title' content={title} />
         <meta name='twitter:description' content={description} />
-        <meta name='twitter:image' content='/og-image.png' />
+        <meta name='twitter:image' content={`${link}/og-image.png`} />
 
         <!-- Theme -->
         <meta name='theme-color' content='#11111b' />
         <meta name='color-scheme' content='dark' />
 
-        <!-- Links and Assets -->
+        <!-- Favicon -->
         <link rel='icon' type='image/png' href='/favicon.png' />
-        <link
-            rel='preload'
-            href='/fonts/CossetteTexte-Regular.woff2'
-            as='font'
-            type='font/woff2'
-            crossorigin='anonymous'
-        />
-        <link
-            rel='preload'
-            href='/fonts/BricolageGrotesque.woff2'
-            as='font'
-            type='font/woff2'
-            crossorigin='anonymous'
-        />
-        <link
-            rel='preload'
-            href='/fonts/Recursive.woff2'
-            as='font'
-            type='font/woff2'
-            crossorigin='anonymous'
-        />
 
         <!-- Title -->
         <title>{title}</title>
